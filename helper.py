@@ -19,7 +19,7 @@ def melt(songs):
     return melt
 
 # https://stackoverflow.com/questions/37793118/load-pretrained-glove-vectors-in-python
-def loadGloveModel(File):
+def loadGloveModel(File='glove.6B.100d.txt'):
     f = open(File,'r')
     gloveModel = {}
     for line in f:
