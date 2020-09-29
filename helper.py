@@ -28,3 +28,21 @@ def loadGloveModel(File):
         wordEmbedding = np.array([float(value) for value in splitLines[1:]])
         gloveModel[word] = wordEmbedding
     return gloveModel
+
+
+#Refactor
+restored_df = pd.read_csv(r'./export_dataframe.csv', converters={'lyric': eval})
+restored_df_opt = pd.read_csv(r'./export_dataframe_opt.csv', converters={'lyric': eval})
+
+def get_fresh_copy(frac=1, opt=False):
+    if(opt):
+        copy_df = pickle.loads(pickle.dumps(restored_df_opt.sample(frac=frac, random_state=1)))
+    else:
+        copy_df = pickle.loads(pickle.dumps(restored_df.sample(frac=frac, random_state=1)))
+        
+    return copy_df
+
+def get_fresh_flatted_copy(frac=1, opt=False):
+    copy_df = get_fresh_copy(frac, opt)
+    copy_df['lyric'] = copy_df['lyric'].transform(lambda x: flatten(x))
+    return copy_df
