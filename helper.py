@@ -32,6 +32,8 @@ def loadGloveModel(File='glove.6B.100d.txt'):
 
 #Refactor
 restored_df = pd.read_csv(r'./export_dataframe.csv', converters={'lyric': eval})
+
+# Coment this line if you dont have already an optional-processed data file
 restored_df_opt = pd.read_csv(r'./export_dataframe_opt.csv', converters={'lyric': eval})
 
 def get_fresh_copy(frac=1, opt=False):
